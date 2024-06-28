@@ -83,6 +83,7 @@ public class GradesControllerTest {
         mockMvc.perform(delete("/grades/1"))
                 .andExpect(status().isOk());
 
+
         Mockito.verify(gradesService, Mockito.times(1)).deleteGrades(1L);
     }
 }
