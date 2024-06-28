@@ -62,6 +62,7 @@ class StudentControllerTest {
 		Mockito.verify(studentService, Mockito.times(1)).addStudent(any(Student.class));
 	}
 
+
 	@Test
 	public void testUpdateStudent() throws Exception {
 		mockMvc.perform(put("/students/1")
@@ -79,5 +80,6 @@ class StudentControllerTest {
 
 		Mockito.verify(studentService, Mockito.times(1)).deleteStudent(1L);
 	}
+
 
 }
