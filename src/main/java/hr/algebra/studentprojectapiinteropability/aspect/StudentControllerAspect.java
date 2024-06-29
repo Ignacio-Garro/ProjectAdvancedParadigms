@@ -32,5 +32,4 @@ public class StudentControllerAspect {
     public void logMethodEntry(JoinPoint joinPoint) {
         System.out.println("Entering " + joinPoint.getSignature().getName() + " method");
     }
-
 }
