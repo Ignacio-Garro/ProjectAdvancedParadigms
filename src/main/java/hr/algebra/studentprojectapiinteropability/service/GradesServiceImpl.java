@@ -8,23 +8,23 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class GradesServiceImpl implements GradesService {
+public class GradesServiceImpl implements BaseService<Grades> {
     private List<Grades> GradesList = new ArrayList<>();
 
-    public List<Grades> getAllGrades() {
+    public List<Grades> getAll() {
         return GradesList;
     }
 
-    public Optional<Grades> getGradesById(Long id) {
+    public Optional<Grades> getById(Long id) {
         return GradesList.stream().filter(grades -> grades.getId().equals(id)).findFirst();
     }
 
-    public void addGrades(Grades grades) {
+    public void add(Grades grades) {
         GradesList.add(grades);
     }
 
-    public void updateGrades(Long id, Grades updatedGrades) {
-        getGradesById(id).ifPresent(Grades -> {
+    public void update(Long id, Grades updatedGrades) {
+        getById(id).ifPresent(Grades -> {
             Grades.setBiologyGrade(updatedGrades.getBiologyGrade());
             Grades.setEnglishGrade(updatedGrades.getEnglishGrade());
             Grades.setMathGrade(updatedGrades.getMathGrade());
@@ -33,7 +33,7 @@ public class GradesServiceImpl implements GradesService {
         });
     }
 
-    public void deleteGrades(Long id) {
+    public void delete(Long id) {
         GradesList.removeIf(grades -> grades.getId().equals(id));
     }
 }

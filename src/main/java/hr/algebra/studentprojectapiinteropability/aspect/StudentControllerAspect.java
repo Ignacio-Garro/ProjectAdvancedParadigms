@@ -13,7 +13,8 @@ public class StudentControllerAspect {
     public void serviceMethods() {
     }
 
-    // Aspect to measure execution time of methods
+    //advice methods- perform actions before and around the methods in the pointcut
+
     @Around("serviceMethods()")
     public Object measureExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();

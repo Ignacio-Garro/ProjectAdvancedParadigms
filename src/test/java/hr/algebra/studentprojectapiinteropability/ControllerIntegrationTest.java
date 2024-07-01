@@ -1,8 +1,6 @@
 package hr.algebra.studentprojectapiinteropability;
 
-import hr.algebra.studentprojectapiinteropability.domain.Student;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,8 +11,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class StudentControllerIntegrationTest {
-
+public class ControllerIntegrationTest {
+    //interacts with the entire application
+    //HTTP request handling, controller logic, and potentially service
     @Autowired
     private MockMvc mockMvc;
 
@@ -31,5 +30,20 @@ public class StudentControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Doe")); // Adjust expected values as per your data
+    }
+
+    @Test
+    public void testGetAllGrades() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/grades")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(9));
+    }
+    @Test
+    public void testGetGradesById() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/grades/{id}", 1L)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.mathGrade").value(85)); // Adjust expected values as per your data
     }
 }

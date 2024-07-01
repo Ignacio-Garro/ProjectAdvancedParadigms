@@ -1,24 +1,24 @@
 package hr.algebra.studentprojectapiinteropability.datainitializer;
 
 import hr.algebra.studentprojectapiinteropability.domain.Grades;
-import hr.algebra.studentprojectapiinteropability.service.GradesService;
+import hr.algebra.studentprojectapiinteropability.service.GradesServiceImpl;
+import hr.algebra.studentprojectapiinteropability.service.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import hr.algebra.studentprojectapiinteropability.domain.Student;
-import hr.algebra.studentprojectapiinteropability.service.StudentService;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
 
     @Autowired
-    private StudentService studentService;
+    private StudentServiceImpl studentServiceImpl;
     @Autowired
-    private GradesService GradeService;
+    private GradesServiceImpl GradeServiceImpl;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         Student student1 = new Student(
                 1L,
                 "Doe",
@@ -158,25 +158,25 @@ public class DataInitializer implements CommandLineRunner {
 
 
         // Insert initial students into the database
-        studentService.addStudent(student1);
-        studentService.addStudent(student2);
-        studentService.addStudent(student3);
-        studentService.addStudent(student4);
-        studentService.addStudent(student5);
-        studentService.addStudent(student6);
-        studentService.addStudent(student7);
-        studentService.addStudent(student8);
-        studentService.addStudent(student9);
+        studentServiceImpl.add(student1);
+        studentServiceImpl.add(student2);
+        studentServiceImpl.add(student3);
+        studentServiceImpl.add(student4);
+        studentServiceImpl.add(student5);
+        studentServiceImpl.add(student6);
+        studentServiceImpl.add(student7);
+        studentServiceImpl.add(student8);
+        studentServiceImpl.add(student9);
 
-        GradeService.addGrades(grades1);
-        GradeService.addGrades(grades2);
-        GradeService.addGrades(grades3);
-        GradeService.addGrades(grades4);
-        GradeService.addGrades(grades5);
-        GradeService.addGrades(grades6);
-        GradeService.addGrades(grades7);
-        GradeService.addGrades(grades8);
-        GradeService.addGrades(grades9);
+        GradeServiceImpl.add(grades1);
+        GradeServiceImpl.add(grades2);
+        GradeServiceImpl.add(grades3);
+        GradeServiceImpl.add(grades4);
+        GradeServiceImpl.add(grades5);
+        GradeServiceImpl.add(grades6);
+        GradeServiceImpl.add(grades7);
+        GradeServiceImpl.add(grades8);
+        GradeServiceImpl.add(grades9);
 
         System.out.println("Initial data inserted into the database.");
     }
